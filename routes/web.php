@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('auth.register');
 });
 
-Auth::routes(['register'=>false]);
+Auth::routes();
 
 Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 Route::resource('settings', App\Http\Controllers\SettingController::class);

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Setting;
+use App\Http\Requests\settingsRequest;
+
+
 
 class SettingController extends Controller
 {
@@ -36,9 +39,11 @@ class SettingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(settingsRequest $request)
     {
-        //
+  
+
+
     }
 
     /**
