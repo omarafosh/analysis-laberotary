@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('group_name');
             $table->string('group_order');
+            $table->string('group_color');
             $table->timestamps();
         });
     }

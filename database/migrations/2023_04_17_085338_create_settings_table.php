@@ -15,11 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('group_color');
             $table->unsignedInteger('group_order');
-            $table->string('laboratory_logo');
             $table->string('laboratory_name');
             $table->text('laboratory_address');
             $table->string('laboratory_header');
-            $table->string('laboratory_doctor');
             $table->string('laboratory_doctor');
             $table->timestamps();
         });

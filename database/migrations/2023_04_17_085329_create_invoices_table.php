@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('date_visit');
             $table->date('date_visit');
             $table->date('date_ready');
             $table->bigInteger('analysis_value');
