@@ -214,19 +214,19 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="glyphicon glyphicon-user"></i>
                     @auth
-                    <span>{{ auth()->user()->name }} <i class="caret"></i></span>
+                        <span>{{ auth()->user()->name }} <i class="caret"></i></span>
 
 
-                </a>
-                <ul class="dropdown-menu">
-                    <!-- User image -->
-                    <li class="user-header bg-light-blue">
-                        <img src="img/avatar3.png" class="img-circle" alt="User Image" />
-                        <p>
-                            {{ auth()->user()->name }} - Web Developer
-                            <small>{{ auth()->user()->email }}</small>
-                        </p>
-                    </li>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header bg-light-blue">
+                            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                            <p>
+                                {{ auth()->user()->name }} - Web Developer
+                                <small>{{ auth()->user()->email }}</small>
+                            </p>
+                        </li>
                     @endauth
                     <!-- Menu Footer-->
                     <li class="user-footer">
@@ -234,7 +234,10 @@
                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                         </div>
                         <div class="pull-right">
-                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <input type="submit" value="Sign out" class="btn btn-default btn-flat">
+                            </form>
                         </div>
                     </li>
                 </ul>

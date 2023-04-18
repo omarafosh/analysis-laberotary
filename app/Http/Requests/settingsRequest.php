@@ -22,7 +22,21 @@ class settingsRequest extends FormRequest
     public function rules(): array
     {
         return [
-           
+            'laboratory_logo' => 'required',
+            'laboratory_name' => 'required',
+            'laboratory_address' => 'required',
+            'laboratory_phone' => 'required',
+            'laboratory_doctor' => 'required',
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'laboratory_logo.required' => "The filed require",
+            'laboratory_name.required' => "The filed require",
+            'laboratory_address.required' => "The filed require",
+            'laboratory_phone.required' => "The filed require",
+            'laboratory_doctor.required' => "The filed require",
         ];
     }
 }

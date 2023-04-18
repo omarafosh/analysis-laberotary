@@ -15,7 +15,7 @@ class SettingController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
     public function index()
     {
@@ -23,7 +23,6 @@ class SettingController extends Controller
         if ($setting != 0) {
             return view('pages.settings');
         } else {
-            toastr()->error('Oops! Something went wrong!');
             return view('pages.add_settings');
         }
     }
@@ -41,8 +40,11 @@ class SettingController extends Controller
      */
     public function store(settingsRequest $request)
     {
-  
-
+        dd($request);
+        if ($request->fails()) {
+            dd($request);
+        }
+        return 'ddd';
 
     }
 

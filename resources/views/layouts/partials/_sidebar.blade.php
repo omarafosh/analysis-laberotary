@@ -37,8 +37,14 @@
             </a>
         </li>
         <li>
-            <a href="pages/widgets.html">
+            <a href={{route('users.index')}}>
                 <i class="fa fa-th"></i> <span>Users</span> <small
+                    class="badge pull-right bg-green">new</small>
+            </a>
+        </li>
+        <li>
+            <a href={{route('roles.index')}}>
+                <i class="fa fa-th"></i> <span>Rols</span> <small
                     class="badge pull-right bg-green">new</small>
             </a>
         </li>
