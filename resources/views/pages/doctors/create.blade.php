@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
-@section('title',"Create User")
+@section('title',"Create Doctor")
 @section('link')
-<li><a href="{{route('users.index')}}"></a> Users</li>
+<li><a href="{{route('doctors.index')}}"></a> Doctors</li>
 <li >Create</li>
 @endsection
 @section('content')
@@ -10,7 +10,7 @@
         <!-- general form elements -->
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">Create New User</h3>
+                <h3 class="box-title">Create New Doctor</h3>
             </div><!-- /.box-header -->
             <!-- form start -->
             <form action={{ route('users.store') }} method="post" role="form">

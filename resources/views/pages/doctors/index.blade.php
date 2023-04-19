@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
-@section('title', 'List Users')
+@section('title',"List Users")
 
 @section('css')
 @endsection
 
 @section('link')
-    <li><a href={{ route('users.index') }}></a> Users</li>
+<li><a href={{route('users.index')}}></a> Users</li>
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Data Table With Full Features</h3><br><br>
-                <a class="btn btn-success text-white" href="{{ route('users.create') }}"> Create New User</a>
+                <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive">
                 <table id="example2" class="table table-bordered table-striped">
@@ -31,13 +31,11 @@
                     <tbody>
                         @foreach ($data as $key => $item)
                             <tr align="center">
-                                <td style="vertical-align:middle">{{ $key + 1 }}</td>
+                                <td>{{ $key + 1 }}</td>
                                 <td style="vertical-align:middle">{{ $item->name }}</td>
                                 <td style="vertical-align:middle">{{ $item->email }}</td>
                                 <td style="vertical-align:middle">
-                                    <span
-                                        class="badge bg-{{ $item->status == 0 ? 'black' : 'green' }}">{{ $item->status == 0 ? 'غير مفعل' : 'مفعل' }}</span>
-                                </td>
+                                <span class="badge bg-{{$item->status == 0 ?'black':'green'}}">{{ $item->status == 0 ? 'غير مفعل' : 'مفعل' }}</span></td>
                                 <td style="vertical-align:middle">
                                     @if (!empty($item->getRoleNames()))
                                         @foreach ($item->getRoleNames() as $role)
@@ -45,7 +43,7 @@
                                         @endforeach
                                     @endif
                                 </td>
-                                <td style="vertical-align:middle" class="d-inline-flex">
+                                <td style="vertical-align:middle">
 
                                     <a class="btn btn-sm btn-warning" href="{{ route('users.show', $item->id) }}">Show</a>
                                     <a class="btn btn-sm btn-primary" href="{{ route('users.edit', $item->id) }}">Edit</a>

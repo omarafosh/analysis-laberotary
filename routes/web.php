@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SettingController;
-use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\UnitController;
+use App\Http\Controllers\AnalysisController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,19 +19,19 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('auth.register');
+Route::get('/find', function () {
+    return view('auth.login');
 });
 
 Auth::routes();
 
+Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
-Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-
-Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles',    RoleController::class   );
-    Route::resource('users',    UserController::class   );
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('users',    UserController::class);
+    Route::resource('doctors',  DoctorController::class);
+    Route::resource('units',    UnitController::class);
+    Route::resource('analysis', AnalysisController::class);
+    Route::resource('invoice',  InvoiceController::class);
     Route::resource('settings', SettingController::class);
 });
-

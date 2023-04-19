@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>AdminLTE | Dashboard</title>
+    <title>Laboratory | @yield('title')</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- bootstrap 3.0.2 -->
     @include('layouts.partials._css')
-
+    @yield('css')
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -21,7 +21,7 @@
     <header class="header">
         <a href="index.html" class="logo">
             <!-- Add the class icon to your logo image or logo icon to add the margining -->
-            AdminLTE
+            Laboratory Analysis
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         @include('layouts.partials._navbar')
@@ -42,8 +42,9 @@
                     <small>Control panel</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
+                    <li><a href={{ route('dashboard') }}><i class="fa fa-dashboard"></i> Home</a></li>
+                    @yield('link')
+
                 </ol>
             </section>
             <!-- Main content -->
@@ -56,7 +57,7 @@
     </div><!-- ./wrapper -->
     <!-- add new calendar event modal -->
     @include('layouts.partials._js')
-    @yield('scripts')
+    @yield('js')
 </body>
 
 </html>
