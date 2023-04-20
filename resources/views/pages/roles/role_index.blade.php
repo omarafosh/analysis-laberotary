@@ -4,7 +4,7 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Data Table With Full Features</h3><br><br>
-            <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
+            <a class="btn btn-success add-button" href="{{ route('roles.create') }}"> Create New Role</a>
         </div><!-- /.box-header -->
         <div class="box-body table-responsive">
             <table id="example2" class="table table-bordered table-striped">
@@ -20,10 +20,21 @@
                     <tr align="center">
                         <td>{{$key+1}}</td>
                         <td style="vertical-align:middle">{{$item->name}}</td>
-                        <td style="vertical-align:middle">
-                            <a class="btn btn-sm btn-warning" href="{{ route('roles.show',$item->id)    }}">Show</a>
-                            <a class="btn btn-sm btn-primary" href="{{ route('roles.edit',$item->id)    }}">Edit</a>
-                            <a class="btn btn-sm btn-danger"  href="{{ route('roles.destroy',$item->id) }}">Del</a>
+                        <td style="vertical-align:middle" class="d-inline-flex">
+                            <div id="actions">
+                                <a class="btn btn-sm btn-warning"
+                                    href="{{ route('users.show', $item->id) }}">Show</a>
+                                <a class="btn btn-sm btn-primary"
+                                    href="{{ route('users.edit', $item->id) }}">Edit</a>
+                                <form action="{{ route('users.destroy', $item->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger show_confirm">
+                                        Del
+                                    </button>
+                                </form>
+                            </div>
+
                         </td>
                     </tr>
                     @endforeach

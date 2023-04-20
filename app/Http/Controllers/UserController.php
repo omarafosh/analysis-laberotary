@@ -39,10 +39,16 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $input = $request->all();
+
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
+
+        // if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $user->addMediaFromRequest('image')->toMediaCollection('avtar');
+        // }
+        dd($user);
         $user->assignRole($request->input('roles'));
-        toastr()->success('User created successfully!');
+
         return redirect()->route('users.index')
             ->with('success', 'User created successfully');
     }
@@ -53,8 +59,8 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = User::find($id);
-        $role=$user->roles;
-        return view('pages.users.show', compact('user','role'));
+        $role = $user->roles;
+        return view('pages.users.show', compact('user', 'role'));
     }
 
     /**
@@ -72,21 +78,15 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
-        $validator=Validator::make($request->all(),[
-                'name'      => 'required',
-                'email'     => 'required|email|unique:users',
-                'password'  => 'same:confirm-password',
-                'roles'     => 'required'
-        ]);
         $input = $request->all();
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {
             $input = $request->except('password');
-            // $input = array_except($input,array('password'));
         }
+
         $user = User::find($id);
         $user->update($input);
         DB::table('model_has_roles')->where('model_id', $id)->delete();

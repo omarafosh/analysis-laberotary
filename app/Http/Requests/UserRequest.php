@@ -9,6 +9,9 @@ class UserRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
+
+
+
     public function authorize(): bool
     {
         return true;
@@ -24,10 +27,10 @@ class UserRequest extends FormRequest
         return [
             'name'      => 'required',
             'email'     => 'required|email|unique:users',
-            'password'  => 'same:confirm-password',
-            'roles'     => 'required'
+            'password'  => 'required|same:confirm-password',
+            'roles'     => 'required',
+            'image' => 'required',
         ];
-
     }
     public function messages(): array
     {
@@ -35,7 +38,7 @@ class UserRequest extends FormRequest
             'name.required'     => "The filed require",
             'email.required'    => "The filed require",
             'email.email'       => "The Not Email",
-            'email.unique'      => "The email existes require",
+            'email.unique'      => "The email existes",
             'password.same'     => "The password not confirm",
             'roles.required'    => "The roles require",
         ];

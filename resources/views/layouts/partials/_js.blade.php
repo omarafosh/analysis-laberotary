@@ -28,14 +28,34 @@
  <!-- AdminLTE App -->
  <script src={{ asset('assets/js/AdminLTE/app.js') }} type="text/javascript"></script>
 
-  <!-- Toast Message -->
-  <script src={{ asset('assets/js/toast.js') }} type="text/javascript"></script>
+ <!-- Toast Message -->
+ <script src={{ asset('assets/js/toast.js') }} type="text/javascript"></script>
 
  <!-- DATA TABES SCRIPT -->
- <script src={{ asset('assets/js/plugins/datatables/jquery.dataTables.js')}} type="text/javascript"></script>
- <script src={{ asset('assets/js/plugins/datatables/dataTables.bootstrap.js')}} type="text/javascript"></script>
+ <script src={{ asset('assets/js/plugins/datatables/jquery.dataTables.js') }} type="text/javascript"></script>
+ <script src={{ asset('assets/js/plugins/datatables/dataTables.bootstrap.js') }} type="text/javascript"></script>
 
  <!-- bootstrap color picker -->
  <script src={{ asset('assets/js/plugins/colorpicker/bootstrap-colorpicker.min.js') }} type="text/javascript"></script>
  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
  <script src={{ asset('assets/js/AdminLTE/dashboard.js') }} type="text/javascript"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+ <script type="text/javascript">
+     $('.show_confirm').click(function(event) {
+         var form = $(this).closest("form");
+         var name = $(this).data("name");
+         event.preventDefault();
+         swal({
+                 title: `Are you sure you want to delete this record?`,
+                 text: "If you delete this, it will be gone forever.",
+                 icon: "warning",
+                 buttons: true,
+                 dangerMode: true,
+             })
+             .then((willDelete) => {
+                 if (willDelete) {
+                     form.submit();
+                 }
+             });
+     });
+ </script>

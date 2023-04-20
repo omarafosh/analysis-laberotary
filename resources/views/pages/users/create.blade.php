@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
-@section('title',"Create User")
+@section('title', 'Create User')
 @section('link')
-<li><a href="{{route('users.index')}}"></a> Users</li>
-<li >Create</li>
+    <li><a href="{{ route('users.index') }}"></a> Users</li>
+    <li>Create</li>
 @endsection
 @section('content')
     <div class="col-md-12">
@@ -13,6 +13,15 @@
                 <h3 class="box-title">Create New User</h3>
             </div><!-- /.box-header -->
             <!-- form start -->
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action={{ route('users.store') }} method="post" role="form">
                 @csrf
                 <div class="box-body">
@@ -36,28 +45,23 @@
                         <input type="password" class="form-control" id="confirm-password" name="confirm-password"
                             placeholder="Enter Password Confirm">
                     </div>
+
                     <div class="form-group">
+                        <label for="roles">Roles</label>
                         <select class="form-control" name="roles[]" id="roles[]" multiple>
                             @foreach ($roles as $key => $value)
                                 <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                         </select>
-                        @error('name')
-                            name
-                        @enderror
-                        @error('email')
-                            name
-                        @enderror
-                        @error('roles')
-                            name
-                        @enderror
-                        @error('password')
-                            name
-                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Select Avatar</label>
+                        <input type="file" id="image" name="image">
+                        <p class="help-block">Size: 3MB</p>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" id="isActive" name="isActive"  checked> Is Active
+                            <input type="checkbox" id="isActive" name="isActive" checked> Is Active
                         </label>
                     </div>
                 </div><!-- /.box-body -->

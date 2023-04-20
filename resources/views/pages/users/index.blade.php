@@ -13,8 +13,9 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Data Table With Full Features</h3><br><br>
-                <a class="btn btn-success text-white" href="{{ route('users.create') }}"> Create New User</a>
+                
+                <h3 class="box-title"></h3><br>
+                <a class="btn btn-success text-white add-button" href="{{ route('users.create') }}"> Create New User</a>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive">
                 <table id="example2" class="table table-bordered table-striped">
@@ -46,17 +47,20 @@
                                     @endif
                                 </td>
                                 <td style="vertical-align:middle" class="d-inline-flex">
+                                    <div id="actions">
+                                        <a class="btn btn-sm btn-warning"
+                                            href="{{ route('users.show', $item->id) }}">Show</a>
+                                        <a class="btn btn-sm btn-primary"
+                                            href="{{ route('users.edit', $item->id) }}">Edit</a>
+                                        <form action="{{ route('users.destroy', $item->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger show_confirm">
+                                                Del
+                                            </button>
+                                        </form>
+                                    </div>
 
-                                    <a class="btn btn-sm btn-warning" href="{{ route('users.show', $item->id) }}">Show</a>
-                                    <a class="btn btn-sm btn-primary" href="{{ route('users.edit', $item->id) }}">Edit</a>
-                                    <form action="{{ route('users.destroy', $item->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Are you sure to delete this user?')">
-                                            Del
-                                        </button>
-                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -68,4 +72,5 @@
 @endsection
 
 @section('js')
+
 @endsection
