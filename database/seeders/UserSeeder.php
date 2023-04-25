@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             'name' =>'omar',
             'email' =>'omar@omar.com',
             'password' =>bcrypt('12345678'),
-            'status' => 1,
+            'status' => '1',
         ]);
         $role=Role::create(['name'=>'super user']);
         $permission =Permission::pluck('id','id')->all();

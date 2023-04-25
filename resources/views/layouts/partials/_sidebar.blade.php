@@ -36,6 +36,9 @@
                 <i class="fa fa-th"></i> <span>Settings</span>
             </a>
         </li>
+
+
+
         <li>
             <a href={{ route('users.index') }}>
                 <i class="fa fa-th"></i> <span>Users</span> <small class="badge pull-right bg-green">new</small>

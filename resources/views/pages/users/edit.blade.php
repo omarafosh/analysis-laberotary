@@ -21,48 +21,63 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('users.update', $user->id) }}" method="post" role="form">
+            <form action="{{ route('users.update', $user->id) }}" method="post" role="form" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="box-body">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name"
-                            placeholder="Enter User Name" value="{{old('name', $user->name)}}">
+                <div class="box-body row">
+                    <div class="col-xs-12">
+                        <div class="form-group col-xs-12">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                placeholder="Enter User Name" value="{{ old('name', $user->name) }}">
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" name="email"
+                                placeholder="Enter User Email" value="{{ old('email', $user->email) }}">
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                placeholder="Enter Password">
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label for="password_confirm">Password Confirm</label>
+                            <input type="password" class="form-control" id="confirm-password" name="confirm-password"
+                                placeholder="Enter Password Confirm">
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="roles">Roles</label>
+                            <select class="form-control" name="roles[]" id="roles[]" multiple>
+                                @foreach ($roles as $key => $value)
+                                    <option value="{{ $key }}"> {{ $value }} </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- <div class="form-group col-xs-3">
+                            <label for="image">Select Avatar</label>
+                            <input type="file" class="uploadimage" id="image" name="image"
+                                accept="image/jpeg, image/png, image/jpg">
+                            <p class="help-block ">Size Image : <span class="previewsize">3MB</span></p>
+                        </div> --}}
+                        <div class="form-group col-xs-6">
+                            <label for="image">Select Avatar</label>
+                            <x-upload-image name="image" multiple="false" limit="500" />
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label>
+                                <input type="checkbox" id="isActive" name="isActive" @checked($user->status)>
+                                IsActive
+                            </label>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email"
-                            placeholder="Enter User Email" value="{{old('email', $user->email)}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password"
-                            placeholder="Enter Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="password_confirm">Password Confirm</label>
-                        <input type="password" class="form-control" id="confirm-password" name="confirm-password"
-                            placeholder="Enter Password Confirm">
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control" name="roles[]" id="roles[]" multiple>
-                            @foreach ($roles as $key => $value)
-                                <option value="{{ $key }}"> {{ $value }} </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="isActive" name="isActive" @checked($user->status)> Is Active
-                        </label>
-                    </div>
-                </div><!-- /.box-body -->
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </div>
             </form>
-        </div><!-- /.box -->
+        </div><!-- /.box-body -->
     </div>
     <!--/.col (left) -->
 @endsection

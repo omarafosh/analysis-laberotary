@@ -30,8 +30,8 @@
                 </div>
             </div>
             <div class="footer">
-                <button type="submit" class="btn bg-olive btn-block">Sign in</button>
-                <p><a href="#">I forgot my password</a></p>
+                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                <p><a href="{{route('password.request')}}">I forgot my password</a></p>
             </div>
         </form>
 

@@ -18,6 +18,10 @@ class PermissionSeeder extends Seeder
             'role-create',
             'role-edit',
             'role-delete',
+            'doctor-list',
+            'doctor-create',
+            'doctor-edit',
+            'doctor-delete',
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);

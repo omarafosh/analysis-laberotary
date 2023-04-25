@@ -43,10 +43,11 @@ class UserController extends Controller
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
 
-        // if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $user->addMediaFromRequest('image')->toMediaCollection('avtar');
-        // }
-        dd($user);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $user->addMediaFromRequest('image')->usingName($user->email)->toMediaCollection('avtars');
+        }
+
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
@@ -56,9 +57,8 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        $user = User::find($id);
         $role = $user->roles;
         return view('pages.users.show', compact('user', 'role'));
     }
@@ -66,9 +66,8 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
 
@@ -78,7 +77,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserRequest $request, string $id)
+    public function update(UserRequest $request, User $user)
     {
         $input = $request->all();
         if (!empty($input['password'])) {
@@ -87,9 +86,12 @@ class UserController extends Controller
             $input = $request->except('password');
         }
 
-        $user = User::find($id);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $user->clearMediaCollection('avtars');
+            $user->addMediaFromRequest('image')->toMediaCollection('avtars');
+        }
         $user->update($input);
-        DB::table('model_has_roles')->where('model_id', $id)->delete();
+        DB::table('model_has_roles')->where('model_id', $user->id)->delete();
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
@@ -99,9 +101,9 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        User::find($id)->delete();
+        User::find($user->id)->delete();
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
     }

@@ -13,7 +13,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                
+
                 <h3 class="box-title"></h3><br>
                 <a class="btn btn-success text-white add-button" href="{{ route('users.create') }}"> Create New User</a>
             </div><!-- /.box-header -->
@@ -24,6 +24,7 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Photo</th>
                             <th>Status</th>
                             <th>Rols</th>
                             <th>Actions</th>
@@ -35,6 +36,7 @@
                                 <td style="vertical-align:middle">{{ $key + 1 }}</td>
                                 <td style="vertical-align:middle">{{ $item->name }}</td>
                                 <td style="vertical-align:middle">{{ $item->email }}</td>
+                                <td style="vertical-align:middle" width="200px"><img src={{ $item->getFirstMediaUrl('avtars','thumb')}} width="100" alt=""></td>
                                 <td style="vertical-align:middle">
                                     <span
                                         class="badge bg-{{ $item->status == 0 ? 'black' : 'green' }}">{{ $item->status == 0 ? 'غير مفعل' : 'مفعل' }}</span>

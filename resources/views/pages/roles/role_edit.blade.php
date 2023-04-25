@@ -11,17 +11,18 @@
                 @csrf
                 @method('PUT')
                 <div class="box-body">
-                    <div class="form-group">
+                    <div class="form-group col-xs-12">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name"
                             placeholder="Enter User Name" value="{{$role->name}}">
                     </div>
-                    <div class="form-group">
-                        <select class="form-control" multiple name="permission[]" id="permission[]">
-                            @foreach ($role->permissions as $key => $value)
-                                <option value="{{ $key }}" {{$value["name"]}}>{{ $value["name"] }}</option>
-                            @endforeach
-                        </select>
+                    <div class="form-group col-xs-12">
+                            @foreach ($permission as $key => $value)
+                            <label> <input  type="checkbox" id="permission[]" name="permission[]" value="{{$value->id}}" {{in_array($value->id, $rolePermissions) ? 'checked' : ''}}>
+                                {{ $value->name }}
+                            </label>
+                            <br>
+                        @endforeach
                     </div>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
