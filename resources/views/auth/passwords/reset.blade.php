@@ -8,10 +8,6 @@
     @include('layouts.partials._css')
     <title>Document</title>
 </head>
-
-
-
-
 <body class="bg-black">
     <div class="container">
         <div class="row justify-content-center">
@@ -87,5 +83,4 @@
     @include('layouts.partials._js')
     <span class="dashicons dashicons-buddicons-buddypress-logo">fgffff</span>
 </body>
-
 </html>

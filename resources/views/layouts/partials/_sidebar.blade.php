@@ -44,33 +44,11 @@
                 <i class="fa fa-th"></i> <span>Users</span> <small class="badge pull-right bg-green">new</small>
             </a>
         </li>
-        @can('role-list')
             <li>
                 <a href={{ route('roles.index') }}>
-                    <i class="fa fa-th"></i> <span>Rols</span> <small class="badge pull-right bg-green">new</small>
+                    <i class="fa fa-th"></i> <span>advertisments</span> <small class="badge pull-right bg-green">new</small>
                 </a>
             </li>
-        @endcan
 
-        <li>
-            <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Doctors</span> <small class="badge pull-right bg-green">new</small>
-            </a>
-        </li>
-        <li>
-            <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Units</span> <small class="badge pull-right bg-green">new</small>
-            </a>
-        </li>
-        <li>
-            <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Analysis</span> <small class="badge pull-right bg-green">new</small>
-            </a>
-        </li>
-        <li>
-            <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Invoice</span> <small class="badge pull-right bg-green">new</small>
-            </a>
-        </li>
     </ul>
 </section>

@@ -16,9 +16,19 @@
     <div class="form-box" id="login-box">
         <div class="header">Forgot Password?</div>
         <div class="body bg-gray">
+            @if (session('status'))
+                <div class="alert alert-success alert-block" role="alert">
+                    {{ session('status') }}
+                </div>
+            @elseif(!empty(session('status')))
+            <div class="alert alert-danger alert-block" role="alert">
+                {{ session('status') }}
+            </div>
+            @endif
             <form method="POST" action="{{ route('password.email') }}">
 
                 @csrf
+
                 <label for="email" class="form-label">{{ __('Email Address') }}</label>
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -33,14 +43,11 @@
                         {{ __('Send Password Reset Link') }}
                     </button>
                 </div>
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
+
         </div>
 
         </form>
+
     </div>
 
 

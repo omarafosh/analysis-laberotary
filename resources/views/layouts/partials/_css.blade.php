@@ -20,7 +20,8 @@
 <link href={{ asset('assets/css/colorpicker/bootstrap-colorpicker.min.css') }} rel="stylesheet" />
 
 
-<!-- Tostar Message -->
-<link href={{ asset('assets/css/toast.css') }} rel="stylesheet" />
+
 <!-- Theme style -->
 <link href={{ asset('assets/css/AdminLTE.css') }} rel="stylesheet" type="text/css" />
+<!-- Tostar Message -->
+<link href={{ asset('assets/css/custmize-them.css') }} rel="stylesheet" />
